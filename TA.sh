@@ -116,7 +116,7 @@ then
         contigs=(${contigs// / })
         prefixes=(${prefixes// / })
         echo "Merging ${prefixes[@]}..."
-        time /home/dmacmillan/software/transabyss-1.5.2/transabyss-merge --SS --threads "$threads" --mink "$mink" --maxk "$maxk" --prefixes "${prefixes[@]}" --length "$readlen" "${contigs[@]}" --out "$outdir"/merged/"$name"-merged.fa --force > "$outdir"/merged/merge.o 2> "$outdir"/merged/merge.e
+        time transabyss-merge --SS --threads "$threads" --mink "$mink" --maxk "$maxk" --prefixes "${prefixes[@]}" --length "$readlen" "${contigs[@]}" --out "$outdir"/merged/"$name"-merged.fa --force > "$outdir"/merged/merge.o 2> "$outdir"/merged/merge.e
     elif [ "$merge" -ne 1 ]
     then
         echo "There was a problem with one of the assemblies, unable to merge. Please check log files for details."
