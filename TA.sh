@@ -145,7 +145,7 @@ then
     echo "Sorting r2c.bam to r2c_ns.bam...(this may take a while)"
     if [ ! -f ${outdir}/r2c_ns.bam -a ! -f ${outdir}/r2c_sorted.bam ]
     then
-        samtools sort -m ${maxmem} -n ${outdir}/r2c.bam ${outdir}/r2c_ns
+        samtools sort -m ${maxmem}G -n ${outdir}/r2c.bam ${outdir}/r2c_ns
     fi
     echo -e "${green}r2c_ns.bam generated!${nc}"
     echo "Fixing mates in r2c_ns.bam to r2c_fm.bam..."
@@ -158,7 +158,7 @@ then
     echo "Sorting r2c_fm.bam to r2c_sorted.bam..."
     if [ ! -f ${outdir}/r2c_sorted.bam -a ! -f ${outdir}/r2c_sorted.bam ]
     then
-        samtools sort -m "$maxmem" "$outdir"/r2c_fm.bam "$outdir"/r2c_sorted
+        samtools sort -m ${maxmem}G "$outdir"/r2c_fm.bam "$outdir"/r2c_sorted
     fi
     echo -e "${green}r2c_sorted.bam generated!${nc}"
 
