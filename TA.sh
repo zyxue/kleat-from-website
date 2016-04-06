@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#export PATH=/home/dmacmillan/software/samtools-1.1/:/projects/btl/arch/gmap-2014-01-21/bin/:/projects/btl/arch/:/home/dmacmillan/software/abyss-1.5.2/_centos7/bin/:/home/dmacmillan/libraries/openmpi-1.8.4/_centos7/bin:/home/dmacmillan/software/abyss-1.5.2/_centos7/bin/:/home/dmacmillan/.pyenv/shims:$PATH
+# need samtools-0.1 NOT samtools-1.x
 
 inPath () {
     if hash $1 2>/dev/null; then
