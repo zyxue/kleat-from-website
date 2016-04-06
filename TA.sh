@@ -73,6 +73,7 @@ then
         echo "k values must be in ascending order!"
         exit 1
     fi
+
     merge=1
     # Run the assemblies
     for k in ${ks[@]}
@@ -97,6 +98,7 @@ then
             echo "==================================="
         fi
     done
+
     if [ "$merge" -eq 1 -a ! -d "$outdir/merged" ]
     then
         echo Merging...
@@ -124,18 +126,21 @@ then
         echo "         Merging complete."
         echo "==================================="
     fi
+
     # bwa index
     echo "Indexing merged fasta..."
     if [ ! -f "$outdir"/merged/"$name"-merged.fa.bwt ]
     then
         bwa index "$outdir"/merged/"$name"-merged.fa
     fi
+
     echo -e "${green}Indexing complete.${nc}"
     echo "Generating unsorted reads-to-contigs alignment (r2c.bam)..."
     if [ ! -f "$outdir"/r2c.bam -a ! -f ${outdir}/r2c_sorted.bam ]
     then
         bwa mem -t "$threads" "$outdir"/merged/"$name"-merged.fa <(zcat "$read1" "$read2") | samtools view -bhS - -o "$outdir"/r2c.bam
     fi
+
     echo -e "${green}r2c.bam generated.${nc}"
     echo "Sorting r2c.bam to r2c_ns.bam...(this may take a while)"
     if [ ! -f ${outdir}/r2c_ns.bam -a ! -f ${outdir}/r2c_sorted.bam ]
@@ -149,12 +154,14 @@ then
         samtools fixmate "$outdir"/r2c_ns.bam "$outdir"/r2c_fm.bam
     fi
     echo -e "${green}r2c_fm.bam generated!${nc}"
+
     echo "Sorting r2c_fm.bam to r2c_sorted.bam..."
     if [ ! -f ${outdir}/r2c_sorted.bam -a ! -f ${outdir}/r2c_sorted.bam ]
     then
         samtools sort -m "$maxmem" "$outdir"/r2c_fm.bam "$outdir"/r2c_sorted
     fi
     echo -e "${green}r2c_sorted.bam generated!${nc}"
+
     echo "Indexing r2c_sorted.bam..."
     if [ ! -f ${outdir}/r2c_sorted.bam.bai ]
     then
