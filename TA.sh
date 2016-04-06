@@ -17,7 +17,7 @@ inPath bwa
 inPath gmap
 
 red='\033[0;31m'
-yellow='\033[1;33'
+yellow='\033[1;33m'
 green='\033[1;32m'
 nc='\033[0m'
 
