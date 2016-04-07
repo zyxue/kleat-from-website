@@ -190,24 +190,23 @@ then
     echo "Generating contig-to-genome alignment..."
     echo -e "${yellow}Executing:${nc} time gmap -d hg19 -D /projects/btl/arch/gmapdb_sarray/hg19 "$outdir"/merged/"$name"-merged.fa -t "$threads" -f samse -n 0 -x 10 | grep -v chrM | egrep '^[@k]' > "$outdir"/c2g.sam"
 
-    time gmap \
-	 -d hg19 \
-	 -D experiment/lele/KLEAT-2.0/gmapdb_sarray/hg19 \
-	 "$outdir"/merged/"$name"-merged.fa \
-	 -t "$threads" \
-	 -f samse \
-	 -n 0 \
-	 -x 10 \
-	| grep -v chrM \
-	| egrep '^[@k]' > "$outdir"/c2g.sam
+    # time gmap \
+    # 	 -d hg19 \
+    # 	 -D experiment/lele/KLEAT-2.0/gmapdb_sarray/hg19 \
+    # 	 "$outdir"/merged/"$name"-merged.fa \
+    # 	 -t "$threads" \
+    # 	 -f samse \
+    # 	 -n 0 \
+    # 	 -x 10 \
+    # 	| grep -v chrM \
+    # 	| egrep '^[@k]' > "$outdir"/c2g.sam
 
-    echo "Compressing sam to bam..."
-    time samtools view -bhS "$outdir"/c2g.sam -o "$outdir"/c2g.bam
-    rm "$outdir"/c2g.sam
+    # echo "Compressing sam to bam..."
+    # time samtools view -bhS "$outdir"/c2g.sam -o "$outdir"/c2g.bam
+    # rm "$outdir"/c2g.sam
 
-    # bwa mem experiment/hg19/bwa-index/hg19.fa ${outdir}/merged/${name}-merged.fa \
-    # 	| samtools view -h -F 2052 -S - \
-    # 	| samtools sort -o ${outdir}/c2g.bam
+    bwa mem experiment/lele/KLEAT-2.0/hg19-chr3/bwa-index/hg19-chr3.fa ${outdir}/merged/${name}-merged.fa \
+	| samtools sort -o ${outdir}/c2g.bam
 
     echo "Success!"
 else
