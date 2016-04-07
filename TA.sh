@@ -2,6 +2,8 @@
 
 # need samtools-0.1 NOT samtools-1.x
 
+# need gmap 2014-03-28 (http://research-pub.gene.com/gmap/src/gmap-gsnap-2014-03-28.v2.tar.gz)
+
 inPath () {
     if hash $1 2>/dev/null; then
         return 1
@@ -178,13 +180,30 @@ then
 #            rm $f
 #        fi
 #    done
+
     #c2g generation
     echo "Generating contig-to-genome alignment..."
     echo -e "${yellow}Executing:${nc} time gmap -d hg19 -D /projects/btl/arch/gmapdb_sarray/hg19 "$outdir"/merged/"$name"-merged.fa -t "$threads" -f samse -n 0 -x 10 | grep -v chrM | egrep '^[@k]' > "$outdir"/c2g.sam"
-    time gmap -d hg19 -D /projects/btl/arch/gmapdb_sarray/hg19 "$outdir"/merged/"$name"-merged.fa -t "$threads" -f samse -n 0 -x 10 | grep -v chrM | egrep '^[@k]' > "$outdir"/c2g.sam
+
+    time gmap \
+	 -d hg19 \
+	 -D experiment/lele/KLEAT-2.0/gmapdb_sarray/hg19 \
+	 "$outdir"/merged/"$name"-merged.fa \
+	 -t "$threads" \
+	 -f samse \
+	 -n 0 \
+	 -x 10 \
+	| grep -v chrM \
+	| egrep '^[@k]' > "$outdir"/c2g.sam
+
     echo "Compressing sam to bam..."
     time samtools view -bhS "$outdir"/c2g.sam -o "$outdir"/c2g.bam
     rm "$outdir"/c2g.sam
+
+    # bwa mem experiment/hg19/bwa-index/hg19.fa ${outdir}/merged/${name}-merged.fa \
+    # 	| samtools view -h -F 2052 -S - \
+    # 	| samtools sort -o ${outdir}/c2g.bam
+
     echo "Success!"
 else
     usage
