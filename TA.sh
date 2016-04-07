@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -x
+# for debugging
+# set -x
 
 # need samtools-1.x NOT samtools-0.1
 
