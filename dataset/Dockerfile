@@ -1,7 +1,7 @@
 # https://raw.githubusercontent.com/sjackman/docker-linuxbrew/master/linuxbrew-core/Dockerfile
 
 FROM ubuntu
-MAINTAINER Shaun Jackman <sjackman@gmail.com>
+MAINTAINER Zhuyi Xue <zxue.bcgsc@gmail.com>
 
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 
@@ -86,9 +86,3 @@ RUN wget http://research-pub.gene.com/gmap/src/gmap-gsnap-2014-03-28.v2.tar.gz  
     && make \
     && make install \
     && cd .. && rm -rf gmap-gsnap-2014-03-28.v2.tar.gz gmap-2014-03-28
-
-ENV PROJECT_ID=tasrkleat
-ENV _PROJECT_DIR ${HOME}/local/${PROJECT_ID}
-ENV PATH=${_PROJECT_DIR}:${PATH}
-RUN mkdir -p ${_PROJECT_DIR}
-ADD app/*.py ${_PROJECT_DIR}/
