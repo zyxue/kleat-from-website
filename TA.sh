@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# need samtools-0.1 NOT samtools-1.x
+set -x
+
+# need samtools-1.x NOT samtools-0.1
 
 # need gmap 2014-03-28 (http://research-pub.gene.com/gmap/src/gmap-gsnap-2014-03-28.v2.tar.gz)
 
@@ -37,7 +39,7 @@ OPTIONS:
     -k  REQUIRED    k-values to run
     -o  REQUIRED    Output directory
     -t  OPTIONAL    Threads to use (default=1)
-    -m  OPTIONAL    Maximum memory to use (default=10G)
+    -m  OPTIONAL    Maximum memory to use for samtools sort (default=10G)
     -h  OPTIONAL    Show this message and exit
 EOF
 }
@@ -147,9 +149,10 @@ then
     echo "Sorting r2c.bam to r2c_ns.bam...(this may take a while)"
     if [ ! -f ${outdir}/r2c_ns.bam -a ! -f ${outdir}/r2c_sorted.bam ]
     then
-        samtools sort -m ${maxmem}G -n ${outdir}/r2c.bam ${outdir}/r2c_ns
+        samtools sort -m ${maxmem} -n -o ${outdir}/r2c_ns.bam ${outdir}/r2c.bam
     fi
     echo -e "${green}r2c_ns.bam generated!${nc}"
+
     echo "Fixing mates in r2c_ns.bam to r2c_fm.bam..."
     if [ ! -f ${outdir}/r2c_fm.bam -a ! -f ${outdir}/r2c_sorted.bam ]
     then
@@ -160,7 +163,7 @@ then
     echo "Sorting r2c_fm.bam to r2c_sorted.bam..."
     if [ ! -f ${outdir}/r2c_sorted.bam -a ! -f ${outdir}/r2c_sorted.bam ]
     then
-        samtools sort -m ${maxmem}G "$outdir"/r2c_fm.bam "$outdir"/r2c_sorted
+        samtools sort -m ${maxmem} -o ${outdir}/r2c_sorted.bam ${outdir}/r2c_fm.bam
     fi
     echo -e "${green}r2c_sorted.bam generated!${nc}"
 
@@ -171,6 +174,7 @@ then
     fi
     echo -e "${green}Index for r2c_sorted.bam generated!${nc}"
     rm "${outdir}"/r2c_ns*
+
 #    echo "Removing extra files..."
 #    files=("$outdir"/merged/"$name"-merged.fa.sa "$outdir"/merged/"$name"-merged.fa.amb "$outdir"/merged/"$name"-merged.fa.ann "$outdir"/merged/"$name"-merged.fa.bwt "$outdir"/merged/"$name"-merged.fa.pac "$outdir"/r2c.bam "$outdir"/r2c_ns.bam "$outdir"/r2c_fm.bam)
 #    for f in ${files[@]}
