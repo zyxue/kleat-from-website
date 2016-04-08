@@ -1,0 +1,151 @@
+Trans-ABySS 1.5.3
+CMD: /home/linuxbrew/.linuxbrew/bin/transabyss --SS --kmer 25 --pe sample_input_reads/sample_1.fq.gz sample_input_reads/sample_2.fq.gz --outdir assembly/k25 --name DHX30 --threads 8
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Found Trans-ABySS directory at: /home/linuxbrew/.linuxbrew/Cellar/trans-abyss/1.5.3
+Found Trans-ABySS `bin` directory at: /home/linuxbrew/.linuxbrew/Cellar/trans-abyss/1.5.3/bin
+Found script at: /home/linuxbrew/.linuxbrew/Cellar/trans-abyss/1.5.3/bin/skip_psl_self.awk
+Found script at: /home/linuxbrew/.linuxbrew/Cellar/trans-abyss/1.5.3/bin/skip_psl_self_ss.awk
+Found `blat' at /home/linuxbrew/.linuxbrew/bin/blat
+Found `MergeContigs' at /usr/local/bin/MergeContigs
+Found `abyss-filtergraph' at /usr/local/bin/abyss-filtergraph
+Found `abyss-map' at /usr/local/bin/abyss-map
+Found `abyss-pe' at /usr/local/bin/abyss-pe
+Found `abyss-junction' at /usr/local/bin/abyss-junction
+# CPU(s) available:	4
+# thread(s) requested:	8
+# thread(s) to use:	4
+CMD: bash -euo pipefail -c 'abyss-pe --directory=/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25 k=25 name=DHX30 E=0 e=2 c=2 j=4 DHX30-1.fa DHX30-1.adj q=3 SS=--SS se="/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/sample_input_reads/sample_1.fq.gz /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/sample_input_reads/sample_2.fq.gz"'
+make: Entering directory `/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25'
+ABYSS -k25 -q3 -e2 -E0 -c2  --SS --coverage-hist=coverage.hist -s DHX30-bubbles.fa  -o DHX30-1.fa  /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/sample_input_reads/sample_1.fq.gz /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/sample_input_reads/sample_2.fq.gz
+ABySS 1.5.2
+ABYSS -k25 -q3 -e2 -E0 -c2 --SS --coverage-hist=coverage.hist -s DHX30-bubbles.fa -o DHX30-1.fa /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/sample_input_reads/sample_1.fq.gz /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/sample_input_reads/sample_2.fq.gz
+Reading `/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/sample_input_reads/sample_1.fq.gz'...
+Reading `/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/sample_input_reads/sample_2.fq.gz'...
+Loaded 286536 k-mer
+Minimum k-mer coverage is 24
+Using a coverage threshold of 2...
+The median k-mer coverage is 3
+The reconstruction is 75674
+The k-mer coverage threshold is 1.73205
+Generating adjacency
+Added 597224 edges.
+Eroding tips
+Eroded 149026 tips.
+Eroded 0 tips.
+Pruning tips shorter than 1 bp...
+Pruned 501 k-mer in 501 tips.
+Pruning tips shorter than 2 bp...
+Pruned 449 k-mer in 226 tips.
+Pruning tips shorter than 4 bp...
+Pruned 995 k-mer in 288 tips.
+Pruning tips shorter than 8 bp...
+Pruned 1925 k-mer in 315 tips.
+Pruning tips shorter than 16 bp...
+Pruned 2510 k-mer in 219 tips.
+Pruning tips shorter than 25 bp...
+Pruned 1220 k-mer in 68 tips.
+Pruning tips shorter than 25 bp...
+Pruned 8 k-mer in 1 tips.
+Pruning tips shorter than 25 bp...
+Pruned 1618 tips in 7 rounds.
+Marked 31778 edges of 13312 ambiguous vertices.
+Removing low-coverage contigs (mean k-mer coverage < 2)
+Found 129873 k-mer in 12172 contigs before removing low-coverage contigs.
+Removed 69857 k-mer in 3610 low-coverage contigs.
+Split 7207 ambigiuous branches.
+Eroding tips
+Eroded 126 tips.
+Eroded 0 tips.
+Pruning tips shorter than 1 bp...
+Pruned 294 k-mer in 294 tips.
+Pruning tips shorter than 2 bp...
+Pruned 267 k-mer in 159 tips.
+Pruning tips shorter than 4 bp...
+Pruned 562 k-mer in 199 tips.
+Pruning tips shorter than 8 bp...
+Pruned 1153 k-mer in 213 tips.
+Pruning tips shorter than 16 bp...
+Pruned 2227 k-mer in 199 tips.
+Pruning tips shorter than 25 bp...
+Pruned 1441 k-mer in 76 tips.
+Pruning tips shorter than 25 bp...
+Pruned 1140 tips in 6 rounds.
+Popping bubbles
+Removed 15 bubbles.
+Removed 15 bubbles
+Marked 10324 edges of 4487 ambiguous vertices.
+Left 31 unassembled k-mer in circular contigs.
+Assembled 53544 k-mer in 4084 contigs.
+Removed 232561 k-mer.
+The signal-to-noise ratio (SNR) is -6.34344 dB.
+AdjList --SS  -k25 -m50 DHX30-1.fa >DHX30-1.adj
+make: Leaving directory `/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25'
+CHECKPOINT: De Bruijn graph assembly completed.
+Iteration 1 of graph simplification ...
+ADJ: 4027 vertices, 6432 edges
+Walked 173 paths and marked 960 vertices for removal.
+CMD: bash -euo pipefail -c 'MergeContigs --kmer=25 --out=/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r1.ref.fa /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-1.fa /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-1.adj /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r1.ref.path'
+951 potentially removable paths ...
+Marked 1086 more vertices for removal.
+CMD: bash -euo pipefail -c 'abyss-filtergraph --shim --kmer=25 --island=0 --remove=/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r1.rm.cids --graph=/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r1.filtered.adj1 --SS /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-1.adj > /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r1.path1'
+CMD: bash -euo pipefail -c 'abyss-filtergraph --no-shim --assemble --kmer=25 --island=0 --graph=/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r1.filtered.adj --SS /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r1.filtered.adj1 > /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r1.path'
+CMD: bash -euo pipefail -c 'MergeContigs --kmer=25 --out=/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r1.filtered.fa /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-1.fa /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r1.filtered.adj1 /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r1.path'
+Completed iteration 1 of graph simplification.
+Iteration 2 of graph simplification ...
+ADJ: 473 vertices, 603 edges
+Walked 45 paths and marked 21 vertices for removal.
+CMD: bash -euo pipefail -c 'MergeContigs --kmer=25 --out=/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r2.ref.fa /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r1.filtered.fa /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r1.filtered.adj /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r2.ref.path'
+13 potentially removable paths ...
+Marked 15 more vertices for removal.
+CMD: bash -euo pipefail -c 'abyss-filtergraph --shim --kmer=25 --island=0 --remove=/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r2.rm.cids --graph=/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r2.filtered.adj1 --SS /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r1.filtered.adj > /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r2.path1'
+CMD: bash -euo pipefail -c 'abyss-filtergraph --no-shim --assemble --kmer=25 --island=0 --graph=/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r2.filtered.adj --SS /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r2.filtered.adj1 > /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r2.path'
+CMD: bash -euo pipefail -c 'MergeContigs --kmer=25 --out=/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r2.filtered.fa /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r1.filtered.fa /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r2.filtered.adj1 /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-unitigs.r2.path'
+Completed iteration 2 of graph simplification.
+Graph simplification stopped at iteration 3
+CHECKPOINT: Unitig assembly completed.
+CMD: bash -euo pipefail -c 'abyss-pe --directory=/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25 k=25 name=DHX30 j=4 in="/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/sample_input_reads/sample_1.fq.gz /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/sample_input_reads/sample_2.fq.gz" SS=--SS s=25 n=2 SIMPLEGRAPH_OPTIONS="--no-scaffold" OVERLAP_OPTIONS="--no-scaffold" MERGEPATH_OPTIONS="--greedy" DHX30-6.fa'
+make: Entering directory `/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25'
+abyss-map  -j4 -l25 --SS   /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/sample_input_reads/sample_1.fq.gz /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/sample_input_reads/sample_2.fq.gz DHX30-3.fa \
+		|abyss-fixmate  -l25  -h DHX30-3.hist \
+		|sort -snk3 -k4 \
+		|DistanceEst  -j4 -k25 -l25 -s25 -n2   -o DHX30-3.dist DHX30-3.hist
+Overlap  --SS --no-scaffold -k25 -g DHX30-4.adj -o DHX30-4.fa DHX30-3.fa DHX30-3.adj DHX30-3.dist
+Overlap: 2
+Scaffold: 0
+No overlap: 6
+Insignificant (<5bp): 2
+Homopolymer: 0
+Motif: 0
+Ambiguous: 0
+SimpleGraph   --no-scaffold -j4 -k25 -o DHX30-4.path1 DHX30-4.adj DHX30-3.dist
+Total paths attempted: 404
+Unique path: 120
+No possible paths: 237
+No valid paths: 5
+Repetitive: 1
+Multiple valid paths: 41
+Too many solutions: 0
+Too complex: 0
+
+The minimum number of pairs in a distance estimate is 2.
+The minimum number of pairs used in a path is 2.
+MergePaths   -j4 -k25 -o DHX30-4.path2 DHX30-4.adj DHX30-4.path1
+PathOverlap --assemble --SS  -k25 DHX30-4.adj DHX30-4.path2 >DHX30-4.path3
+cat DHX30-3.fa DHX30-4.fa \
+		|PathConsensus  -k25 -p0.9 -o DHX30-5.path -s DHX30-5.fa -g DHX30-5.adj - DHX30-4.adj DHX30-4.path3
+cat DHX30-3.fa DHX30-4.fa DHX30-5.fa |MergeContigs  -k25 -o DHX30-6.fa - DHX30-5.adj DHX30-5.path
+make: Leaving directory `/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25'
+CHECKPOINT: Contig assembly completed.
+ADJ: 378 vertices, 494 edges
+Walked 44 paths.
+CMD: bash -euo pipefail -c 'MergeContigs --kmer=25 --out=/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-ref.fa --merged /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-3.fa /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-5.adj /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-ref.path'
+CHECKPOINT: Reference path assembly completed.
+CMD: bash -euo pipefail -c 'abyss-junction /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-5.adj /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-3.dist  >/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-jn.path'
+CMD: bash -euo pipefail -c 'MergeContigs --kmer=25 --out=/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-jn.fa --merged /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-3.fa /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-5.adj /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-jn.path'
+CHECKPOINT: Junction extension completed.
+Using BLAT to remove redundancy ...
+CHECKPOINT: Final assembly completed.
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Assembly generated with Trans-ABySS 1.5.3 :)
+Final assembly: /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-final.fa
+Total wallclock run time: 0 h 0 m 10 s

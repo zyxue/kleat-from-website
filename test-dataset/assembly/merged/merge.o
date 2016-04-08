@@ -1,0 +1,19 @@
+Trans-ABySS 1.5.3
+CMD: /home/linuxbrew/.linuxbrew/bin/transabyss-merge --SS --threads 8 --mink 25 --maxk 35 --prefixes k25 k35 --length 76 assembly/k25/DHX30-final.fa assembly/k35/DHX30-final.fa --out assembly/merged/DHX30-merged.fa --force
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Found Trans-ABySS directory at: /home/linuxbrew/.linuxbrew/Cellar/trans-abyss/1.5.3
+Found Trans-ABySS `bin` directory at: /home/linuxbrew/.linuxbrew/Cellar/trans-abyss/1.5.3/bin
+Found script at: /home/linuxbrew/.linuxbrew/Cellar/trans-abyss/1.5.3/bin/skip_psl_self.awk
+Found script at: /home/linuxbrew/.linuxbrew/Cellar/trans-abyss/1.5.3/bin/skip_psl_self_ss.awk
+Found `abyss-map' at /usr/local/bin/abyss-map
+Found `blat' at /home/linuxbrew/.linuxbrew/bin/blat
+# CPU(s) available:	4
+# thread(s) requested:	8
+# thread(s) to use:	4
+Assembly Prefixes:
+k25	/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k25/DHX30-final.fa
+k35	/home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/k35/DHX30-final.fa
+Removing sequences shorter than 76 bp ...
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Merged assembly: /home/linuxbrew/experiment/lele/KLEAT-2.0/test-dataset/assembly/merged/DHX30-merged.fa
+Total wallclock run time: 0 h 0 m 2 s
