@@ -22,7 +22,7 @@ Use the included script (`TA.sh`), and run it inside a container to generate
 the input necessary for KLEAT.
 
 ```
-./TA.sh \
+./build_input.sh \
 	-a <in1.fq.gz> \
 	-b <in2.fq.gz> \
 	-n <sample name> \
@@ -36,7 +36,7 @@ e.g. the command used to generate the KLEAT input in the `../assembly`
 directory:
 
 ```
-./TA.sh \
+./build_input.sh \
     -a sample_input_reads/sample_1.fq.gz \
     -b sample_input_reads/sample_2.fq.gz \
     -n DHX30 \
