@@ -3,6 +3,13 @@
 * BLAT (http://www.kentinformatics.com/)
 * pysam (https://github.com/pysam-developers/pysam)
 
+The prerequisites can be installed by building a docker image with the included
+Dockerfile.
+
+```
+sudo docker build -t <username>/kleat .
+```
+
 # Run KLEAT
 
 To run KLEAT, simply have python installed along with the python module

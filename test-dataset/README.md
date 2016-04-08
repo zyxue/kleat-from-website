@@ -6,12 +6,7 @@ This documents how the test dataset is generated
 * Samtools (http://www.htslib.org/)
 * BWA (http://bio-bwa.sourceforge.net/)
 				
-The prerequisites can be installed by build a Docker image using the Dockerfile
-(recommended)
-
-```
-sudo docker build -t <username>/TA .
-```
+The prerequisites has been installed in the Dockerfile, as well.
 
 # Results
 
