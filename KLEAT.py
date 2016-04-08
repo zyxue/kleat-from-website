@@ -85,7 +85,10 @@ if args.c:
 prefix = os.path.splitext(args.out)[0]
 basedir = os.path.dirname(args.out)
 if not os.path.exists(basedir):
-    os.makedirs(basedir)
+    if basedir != '':
+        # if it's '', then meaning current directory
+        os.makedirs(basedir)
+
 #out_link_pairs = open(os.path.join(basedir,prefix+'-link.fa'), 'a')
 reads_to_check = open(os.path.join(basedir,'.reads_to_check'), 'w')
 
