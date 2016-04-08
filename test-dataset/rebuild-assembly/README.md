@@ -4,7 +4,6 @@ This documents how the test dataset is generated
 
 * Trans-ABySS (http://www.bcgsc.ca/platform/bioinfo/software/trans-abyss)
 * Samtools (http://www.htslib.org/)
-* GMAP (http://www.molecularevolution.org/software/genomics/gmap)
 * BWA (http://bio-bwa.sourceforge.net/)
 				
 The prerequisites can be installed by build a Docker image using the Dockerfile
