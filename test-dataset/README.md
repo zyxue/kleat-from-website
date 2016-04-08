@@ -41,7 +41,7 @@ directory:
     -b sample_input_reads/sample_2.fq.gz \
     -n DHX30 \
     -k "25 35" \
-    -o ../assembly \
+    -o assembly \
     -t 8 \
     -m '10G'
 ```
