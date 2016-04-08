@@ -24,14 +24,14 @@ e.g.
 
 ```
 python KLEAT.py \
-	test/assembly/c2g.bam \
-	test/assembly/merged/DHX30-merged.fa \
-	hg19.fa \
-	ensembl.fixed.sorted.gz \
-	test/assembly/r2c_sorted.bam \
-	test/KLEAT/DHX30 \
-	-k KLEAT_test "KLEAT cleavage sites" \
-	-ss
+       test-dataset/assembly/c2g.bam \
+       test-dataset/assembly/merged/DHX30-merged.fa \
+       test-dataset/reference/hg19-chr3/hg19-chr3.fa \
+       test-dataset/reference/ensembl.fixed.sorted.gz \
+       test-dataset/assembly/r2c_sorted.bam \
+       kleat-output/DHX30 \
+       -k KLEAT_test "KLEAT cleavage sites" \
+       -ss
 ```
 
 You may need to alter some of the options, for example the `-ss` option is
