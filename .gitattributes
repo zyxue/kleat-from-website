@@ -1,1 +1,2 @@
 test-dataset/reference/** filter=lfs diff=lfs merge=lfs -text
+test-dataset/sample_input_reads/** filter=lfs diff=lfs merge=lfs -text
