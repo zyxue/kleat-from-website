@@ -91,7 +91,17 @@ then
             echo "$outdir"/k"$k" does not exist! Creating.
             mkdir -p "$outdir"/k"$k"
             echo "Running transABySS with k="$k". Output logs in '"$stdo"' and '"$stde"'"
-            time transabyss --SS --kmer "$k" --pe "$read1" "$read2" --outdir "$outdir"/k"$k" --name "$name" --threads "$threads" > "$stdo" 2> "$stde"
+
+            time transabyss \
+		 --SS \
+		 --kmer "$k" \
+		 --pe "$read1" "$read2" \
+		 --outdir "$outdir"/k"$k" \
+		 --name "$name" \
+		 --threads "$threads" \
+		 > "$stdo" \
+		 2> "$stde"
+
             error=$(grep -i error "$stde")
             if [ -n "$error" ]
             then
@@ -121,7 +131,19 @@ then
         contigs=(${contigs// / })
         prefixes=(${prefixes// / })
         echo "Merging ${prefixes[@]}..."
-        time transabyss-merge --SS --threads "$threads" --mink "$mink" --maxk "$maxk" --prefixes "${prefixes[@]}" --length "$readlen" "${contigs[@]}" --out "$outdir"/merged/"$name"-merged.fa --force > "$outdir"/merged/merge.o 2> "$outdir"/merged/merge.e
+
+        time transabyss-merge \
+	     --SS \
+	     --threads "$threads" \
+	     --mink "$mink" \
+	     --maxk "$maxk" \
+	     --prefixes "${prefixes[@]}" \
+	     --length "$readlen" "${contigs[@]}" \
+	     --out "$outdir"/merged/"$name"-merged.fa \
+	     --force \
+	     > "$outdir"/merged/merge.o \
+	     2> "$outdir"/merged/merge.e
+
     elif [ "$merge" -ne 1 ]
     then
         echo "There was a problem with one of the assemblies, unable to merge. Please check log files for details."
@@ -143,7 +165,8 @@ then
     echo "Generating unsorted reads-to-contigs alignment (r2c.bam)..."
     if [ ! -f "$outdir"/r2c.bam -a ! -f ${outdir}/r2c_sorted.bam ]
     then
-        bwa mem -t "$threads" "$outdir"/merged/"$name"-merged.fa <(zcat "$read1" "$read2") | samtools view -bhS - -o "$outdir"/r2c.bam
+        bwa mem -t "$threads" "$outdir"/merged/"$name"-merged.fa <(zcat "$read1" "$read2") \
+	    | samtools view -bhS - -o "$outdir"/r2c.bam
     fi
 
     echo -e "${green}r2c.bam generated.${nc}"
@@ -186,9 +209,9 @@ then
 #        fi
 #    done
 
-    #c2g generation
-    echo "Generating contig-to-genome alignment..."
-    echo -e "${yellow}Executing:${nc} time gmap -d hg19 -D /projects/btl/arch/gmapdb_sarray/hg19 "$outdir"/merged/"$name"-merged.fa -t "$threads" -f samse -n 0 -x 10 | grep -v chrM | egrep '^[@k]' > "$outdir"/c2g.sam"
+    # #c2g generation
+    # echo "Generating contig-to-genome alignment..."
+    # echo -e "${yellow}Executing:${nc} time gmap -d hg19 -D /projects/btl/arch/gmapdb_sarray/hg19 "$outdir"/merged/"$name"-merged.fa -t "$threads" -f samse -n 0 -x 10 | grep -v chrM | egrep '^[@k]' > "$outdir"/c2g.sam"
 
     # time gmap \
     # 	 -d hg19 \
@@ -205,7 +228,7 @@ then
     # time samtools view -bhS "$outdir"/c2g.sam -o "$outdir"/c2g.bam
     # rm "$outdir"/c2g.sam
 
-    bwa mem experiment/lele/KLEAT-2.0/hg19-chr3/bwa-index/hg19-chr3.fa ${outdir}/merged/${name}-merged.fa \
+    bwa mem ./reference/hg19-chr3/bwa-index/hg19-chr3.fa ${outdir}/merged/${name}-merged.fa \
 	| samtools sort -o ${outdir}/c2g.bam
 
     echo "Success!"
