@@ -1,0 +1,26 @@
+CLEAT is designed to work on trans-ABySS output.
+Specifically, the output of the following steps in trans-ABySS are used as input for CLEAT:
+
+1. FEM (Filter-Extend-Merge) (single FASTA file)
+2. GMAP contigs-to-genome alignment (single SAM file)
+3. BWA-mem reads-to-contigs alignment (single BAM file)
+
+In addition, annotation files are expected to be downloaded from UCSC and set up as instructed in the trans-ABySS manual.
+This way, when <genome> (e.g. '-g hg19') is specified, the necessary annotation files can be retrieved handily.
+
+CLEAT also requires 'BLAT' to align sequences to transcripts.  Make sure BLAT is in the PATH.
+
+The identification of polyA tail from the assembly is performed by 'polyA.py'.
+Here is an example of how to run 'polyA.py':
+
+polyA.py -a aln.sam -c contigs.fa -g hg19 -o out.txt -b r2c.bam -r -e --use_tmp
+ 
+-r = output read sequences that contain polyA tail
+-e = overlap ESTs as evidence of cleavage site
+--use_tmp = use /tmp space for holding BLAT alignments
+
+A config file ('config.cfg') and a helper script ('run_polyA.py') are provided to run the pipeline in a SunGrid Engine cluster environment.
+The idea is that multiple 'libraries' under a specific 'project' can be processed simultaneously, in the same theme of trans-ABySS.
+The config file is encoded in the same format as those in trans-ABySS.
+
+See the `analysis/README` for details on running scripts 

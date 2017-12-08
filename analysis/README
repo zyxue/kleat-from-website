@@ -1,0 +1,52 @@
+# CLEAT Analysis
+
+## Introduction
+
+Before running roc_vals_cssupport.sh, the cssupport.cc must be
+compiled. This should be as simple as running `make` in this
+directory.
+
+The roc_vals_cssupport.sh script is a BASH wrapper written to be run
+on an SGE cluster, and it generates a file for each assembly method
+tested (cufflinks, trinity and trans-abyss) containing numbers for
+true positives, false positives, false negatives, sensitivity, and
+the false discovery rate. There are three parameters that need to be
+defined: library name, amount of support (reported by each tool)
+required to call a CS event, and amount of RNA-PET support required
+to validate any CS events.
+
+## Running Analysis
+
+Caveat: To reproduce results found in our posters and papers, the
+locations of the files and folders will likely need to be modified.
+
+These scripts assume that the matching RNA-PET data for the library
+has been dowloaded as a bed graph to:
+../$lib/wgEncodeGisRnaPet*CellPap{Plus,Minus}RawRep*.bg
+
+CLEAT results should be located in this folder with the
+following name:
+$lib.trin.polyA.tsv
+
+Cufflinks results should be split into +ve and -ve strand files:
+../../cufflinks/$lib/transcripts_{+,-}.bg
+
+To run on an SGE cluster:
+qsub -N <lib_name> -t <RNA-Seq_support> roc_vals_cssupport.sh <RNA-PET_support>
+
+To run outside of an SGE cluster, the parameters must be passed as
+environment variables:
+JOB_NAME=<lib_name> SGE_TASK_ID=<RNA-Seq_support> roc_vals_cssupport.sh <RNA-PET_support>
+
+## Results
+
+The results from running roc_vals_cssupport.sh should be three space
+deliminited files with the following format:
+$lib $tool $TP $FP $FN $TPR $FDR
+
+Run the tools at various support thresholds to get values needed for
+ROC plots and validation results.
+
+## Contact
+
+Please contact Anthony Raymond <traymond@bcgsc.ca> for help.
