@@ -1,3 +1,10 @@
+# Branches:
+
+* v1.0: http://www.bcgsc.ca/platform/bioinfo/software/cleat/releases/1.0/CLEAT.tgz
+* v2.0: http://www.bcgsc.ca/platform/bioinfo/software/cleat/releases/2.0/KLEAT-2.0.tar.gz
+* master branch: hosts my refactoring to v2.0
+
+
 # Prerequisites
 
 * BLAT (http://www.kentinformatics.com/)
